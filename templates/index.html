@@ -1,0 +1,39 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>5 hərfli Instagram Username Checker</title>
+    <style>
+      body { font-family: Arial, sans-serif; max-width:600px; margin:40px auto; }
+      input { padding:8px; font-size:16px; }
+      button { padding:8px 12px; font-size:16px; margin:4px; }
+      .ok { color: green; }
+      .bad { color: red; }
+      .warn { color: orange; }
+    </style>
+  </head>
+  <body>
+    <h1>5 hərfli Instagram username checker</h1>
+    <form method="post">
+      <div>
+        <input name="username" value="{{username}}" maxlength="5" placeholder="5 hərf daxil et" />
+        <button type="submit" name="action" value="check">Yoxla</button>
+        <button type="submit" name="action" value="random">Təsadüfi yarat & yoxla</button>
+      </div>
+    </form>
+
+    {% if result is not none %}
+      <div style="margin-top:20px;">
+        {% if result == True %}
+          <p class="ok">✅ "{{username}}" mövcud deyil — boşdur!</p>
+        {% elif result == False %}
+          <p class="bad">❌ "{{username}}" artıq götürülüb.</p>
+        {% elif result == "length_error" %}
+          <p class="warn">⚠️ Zəhmət olmasa dəqiq 5 hərf yaz.</p>
+        {% else %}
+          <p class="warn">⚠️ Yoxlama zamanı problem oldu.</p>
+        {% endif %}
+      </div>
+    {% endif %}
+  </body>
+</html>
